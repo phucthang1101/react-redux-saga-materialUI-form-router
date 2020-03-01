@@ -1,0 +1,22 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Read book",
+      "description": "Read JS book",
+      "status": 0
+    },
+    {
+      "id": 3,
+      "title": "Listen to music",
+      "description": "Relaxingggg",
+      "status": 2
+    },
+    {
+      "title": "đi bơi",
+      "description": "demo2 đi bơi\n",
+      "status": 1,
+      "id": 7
+    }
+  ]
+}
