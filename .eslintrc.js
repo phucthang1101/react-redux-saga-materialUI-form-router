@@ -27,6 +27,9 @@ module.exports = {
     "react/prefer-stateless-function": 0,
     "react/forbid-prop-types": 0,
     "react/require-default-props": 0,
+    "import/no-cycle":0,
+    "import/no-extraneous-dependencies":0,
+    
     // quotes: [0, 'single'],
     // 'prettier/prettier': ['error']
   },

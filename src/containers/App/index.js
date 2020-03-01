@@ -15,8 +15,9 @@ import theme from "../../commons/Theme";
 import { ThemeProvider } from "@material-ui/styles";
 import Modal from "../../components/Modal";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { ADMIN_ROUTES } from "../../constants/index";
+import { ADMIN_ROUTES, ROUTES } from "../../constants/index";
 import AdminLayoutRoute from "../../commons/Layout/AdminLayoutRoute";
+import DefaultLayoutRoute from "../../commons/Layout/DefaultLayoutRoute";
 
 const store = configureStore();
 
@@ -38,6 +39,23 @@ class App extends Component {
     return xhtml;
   };
 
+  renderDefaultRoute = () => {
+    let xhtml = null;
+
+    xhtml = ROUTES.map((route, index) => {
+      return (
+        <DefaultLayoutRoute
+          key={route.path}
+          component={route.component}
+          exact={route.exact}
+          path={route.path}
+          name={route.name}
+        />
+      );
+    });
+    return xhtml;
+  };
+
   render() {
     return (
       <Provider store={store}>
@@ -47,7 +65,10 @@ class App extends Component {
               <ToastContainer />
               <GlobalLoading />
               <Modal />
-              <Switch>{this.renderAdminRoute()}</Switch>
+              <Switch>
+                {this.renderAdminRoute()}
+                {this.renderDefaultRoute()}
+              </Switch>
             </div>
           </ThemeProvider>
         </BrowserRouter>

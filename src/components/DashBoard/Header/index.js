@@ -1,36 +1,44 @@
-import AppBar from '@material-ui/core/AppBar';
-import IconButton from '@material-ui/core/IconButton';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MenuIcon from '@material-ui/icons/Menu';
-import { withStyles } from '@material-ui/styles';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import styles from './styles';
+import AppBar from "@material-ui/core/AppBar";
+import IconButton from "@material-ui/core/IconButton";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import MenuIcon from "@material-ui/icons/Menu";
+import { withStyles } from "@material-ui/styles";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+import styles from "./styles";
+import { withRouter } from "react-router";
 
-const menuId = 'primary-search-account-menu';
+const menuId = "primary-search-account-menu";
 
 class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      anchorEl: null,
+      anchorEl: null
     };
   }
 
   handleProfileMenuOpen = e => {
     this.setState({
-      anchorEl: e.currentTarget,
+      anchorEl: e.currentTarget
     });
   };
 
   handleMenuClose = () => {
     this.setState({
-      anchorEl: null,
+      anchorEl: null
     });
+  };
+
+  handleLogout = () => {
+    const { history } = this.props;
+    if (history) {
+      history.push("/login");
+    }
   };
 
   renderMenu = () => {
@@ -39,21 +47,21 @@ class Header extends Component {
     return (
       <Menu
         anchorEl={anchorEl}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
         id={menuId}
         keepMounted
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        transformOrigin={{ vertical: "top", horizontal: "right" }}
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleMenuClose}>Logout</MenuItem>
+        <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
       </Menu>
     );
   };
 
   handleToggleSidebar = () => {
     const { showSidebar, onToggleSidebar } = this.props;
-    
+
     if (onToggleSidebar) {
       onToggleSidebar(!showSidebar);
     }
@@ -102,7 +110,7 @@ Header.propTypes = {
   classes: PropTypes.object,
   name: PropTypes.string,
   showSidebar: PropTypes.bool,
-  onToggleSidebar: PropTypes.func,
+  onToggleSidebar: PropTypes.func
 };
 
-export default withStyles(styles)(Header);
+export default withStyles(styles)(withRouter(Header));
